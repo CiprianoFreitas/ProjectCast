@@ -9,7 +9,7 @@ using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using UWAfirst.Model;
+using ProjectCast.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -25,7 +25,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace UWAfirst
+namespace ProjectCast
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

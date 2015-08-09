@@ -1,11 +1,11 @@
 ﻿<Page
-    x:Class="UWAfirst.MainPage"
+    x:Class="ProjectCast.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:UWAfirst"
+    xmlns:local="using:ProjectCast"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:UWAfirst.Model"
+    xmlns:data="using:ProjectCast.Model"
     mc:Ignorable="d">
     <Page.Resources>
         <CollectionViewSource x:Name="Podcasts"  IsSourceGrouped="False" />

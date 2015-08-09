@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace UWAfirst.Model
+namespace ProjectCast.Model
 {
     public class Podcast
     {
