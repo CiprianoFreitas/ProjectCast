@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:ProjectCast.Model"
     mc:Ignorable="d">
+
     <Page.Resources>
         <CollectionViewSource x:Name="Podcasts"  IsSourceGrouped="False" />
 
@@ -22,6 +23,7 @@
         </DataTemplate>
         <!--#endregion-->
     </Page.Resources>
+
 
     <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
                CompactPaneLength="50" OpenPaneLength="150">
