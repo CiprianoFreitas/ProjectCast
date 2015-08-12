@@ -1,5 +1,6 @@
-﻿using System.IO;
-using System.Net;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace ProjectCast.Model
@@ -7,43 +8,60 @@ namespace ProjectCast.Model
     public class Podcast
     {
         public string ImageURL { get; set; }
+
         public string FeedUrl { get; set; }
+        public IEnumerable<Episode> EpisodesList { get; set; }
 
         public Podcast()
-        {
-        }
+        { }
 
         public string GetLatestEpisode()
         {
-            string sURL;
-            sURL = FeedUrl;
-
-            WebRequest wrGETURL;
-            wrGETURL = WebRequest.Create(sURL);
-
-            Stream objStream;
-            objStream = wrGETURL.GetResponseAsync().GetAwaiter().GetResult().GetResponseStream();
-
-            StreamReader objReader = new StreamReader(objStream);
-
-            string response = "";
-            string line;
-            while ((line = objReader.ReadLine()) != null)
+            foreach (var episode in EpisodesList)
             {
-                response += line;
+                return episode.EpisodeUrl;
             }
-            return HandleFeed(response);
-        }
 
-        private string HandleFeed(string feedString)
-        {
-            // build XML DOM from feed string
-            XDocument doc = XDocument.Parse(feedString);
-            foreach (var item in doc.Descendants("item"))
-            {
-                return item.Element("enclosure").Attribute("url").Value;
-            }
             return "";
         }
+
+        public async Task<IEnumerable<Episode>> GetEpisodeList()
+        {
+            HttpClient http = new System.Net.Http.HttpClient();
+            HttpResponseMessage response = await http.GetAsync(this.FeedUrl);
+            string resultString = await response.Content.ReadAsStringAsync();
+
+            return HandleFeed(resultString);
+        }
+
+        private IEnumerable<Episode> HandleFeed(string feedString)
+        {
+            List<Episode> episodesList = new List<Episode>();
+
+            try
+            {
+                // build XML DOM from feed string
+                XDocument doc = XDocument.Parse(feedString);
+                foreach (var item in doc.Descendants("item"))
+                {
+                    episodesList.Add(new Episode
+                    {
+                        Name = item.Element("title").Value,
+                        EpisodeUrl = item.Element("enclosure").Attribute("url").Value
+                    });
+                }
+            }
+            catch (System.Exception)
+            {
+            }
+
+            return episodesList;
+        }
+    }
+
+    public class Episode
+    {
+        public string Name { get; set; }
+        public string EpisodeUrl { get; set; }
     }
 }

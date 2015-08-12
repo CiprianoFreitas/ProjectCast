@@ -1,6 +1,8 @@
 ﻿using ProjectCast.Helpers;
 using ProjectCast.Model;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -59,12 +61,12 @@ namespace ProjectCast
             }
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedPodcast = (Podcast)e.ClickedItem;
-            var mp3Url = selectedPodcast.GetLatestEpisode();
-            PodcastPlayer.Source = new Uri(mp3Url);
-            PodcastPlayer.Play();
+            IEnumerable<Episode> episodesList = await selectedPodcast.GetEpisodeList();
+
+            Frame.Navigate(typeof(EpisodesList), episodesList);
         }
     }
 }

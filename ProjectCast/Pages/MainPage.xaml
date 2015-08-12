@@ -50,12 +50,7 @@
                 <TextBox x:Name="SearchText" KeyUp="SearchText_KeyUp" HorizontalAlignment="Left" Margin="12,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
                 <Button x:Name="SubmitSearchButton" Content="Search" HorizontalAlignment="Left" Margin="225,12,0,0" VerticalAlignment="Top" Click="SubmitSearchButton_Click"/>
                 <GridView ItemsSource="{x:Bind Podcasts.View}" ItemClick="GridView_ItemClick" IsItemClickEnabled="True"
-                  ItemTemplate="{StaticResource ContactGridViewTemplate}" Margin="12,48,0,120"/>
-
-                <Grid Height="120" VerticalAlignment="Bottom">
-                    <MediaElement x:Name="PodcastPlayer" AreTransportControlsEnabled="True">
-                    </MediaElement>
-                </Grid>
+                  ItemTemplate="{StaticResource ContactGridViewTemplate}" Margin="12,48,0,0"/>
             </Grid>
         </SplitView.Content>
     </SplitView>

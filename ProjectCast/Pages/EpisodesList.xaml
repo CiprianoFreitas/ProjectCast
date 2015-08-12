@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="ProjectCast.EpisodesList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjectCast"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ProjectCast.Model"
+    mc:Ignorable="d">
+
+    <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
+               CompactPaneLength="50" OpenPaneLength="150">
+        <SplitView.Pane>
+            <StackPanel Background="{StaticResource MainBrandColorBrush}">
+                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="PodcastsButton" FontFamily="Segoe MDL2 Assets" Content="&#xE80A;"
+                    Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Text="Podcasts" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="SearchButton" FontFamily="Segoe MDL2 Assets" Content="&#xE094;"
+                        Width="50" Height="50" Background="Transparent" Click="SearchButton_Click"/>
+                    <TextBlock Text="Search" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <!--<Border x:Name="Border" BorderThickness="0,0,0,1" BorderBrush="White" Width="150" Visibility="Collapsed">
+                </Border>-->
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Grid >
+                <ListView x:Name="ItemListContainer" ItemClick="ItemListContainer_ItemClick" IsItemClickEnabled="True" Margin="0,0,0,120">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Episode">
+                            <TextBlock Text="{x:Bind Name}" TextWrapping="NoWrap"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Height="120" VerticalAlignment="Bottom">
+                    <MediaElement x:Name="PodcastPlayer" AreTransportControlsEnabled="True">
+                    </MediaElement>
+                </Grid>
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
+</Page>
