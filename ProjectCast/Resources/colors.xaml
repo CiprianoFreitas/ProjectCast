@@ -4,5 +4,5 @@
     xmlns:local="using:UWAfirst.Resources">
 
     <SolidColorBrush x:Key="MainBrandColorBrush" Color="{StaticResource MainBrandColor}"></SolidColorBrush>
-    <Color x:Key="MainBrandColor">#F4483B</Color>
+    <Color x:Key="MainBrandColor">#3E3E9B</Color>
 </ResourceDictionary>

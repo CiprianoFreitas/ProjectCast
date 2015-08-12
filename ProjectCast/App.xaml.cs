@@ -1,6 +1,8 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -68,6 +70,16 @@ namespace ProjectCast
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
+            var applicationView = ApplicationView.GetForCurrentView();
+            var titleBar = applicationView.TitleBar;
+
+            var mainBrand = Application.Current.Resources["MainBrandColor"]; ;
+
+            titleBar.ButtonBackgroundColor = Colors.Black;
+            titleBar.BackgroundColor = (Color)mainBrand;
+            titleBar.ForegroundColor = Colors.White;
+            titleBar.ButtonForegroundColor = Colors.White;
         }
 
         /// <summary>

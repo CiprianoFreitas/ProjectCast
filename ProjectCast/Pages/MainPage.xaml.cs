@@ -24,17 +24,8 @@ namespace ProjectCast
         public MainPage()
         {
             this.InitializeComponent();
-            var applicationView = ApplicationView.GetForCurrentView();
-            var titleBar = applicationView.TitleBar;
 
             Podcasts.Source = PodcastService.GetPodcasts("Planet");
-
-            var mainBrand = Application.Current.Resources["MainBrandColor"]; ;
-
-            titleBar.ButtonBackgroundColor = Colors.Black;
-            titleBar.BackgroundColor = (Color)mainBrand;
-            titleBar.ForegroundColor = Colors.White;
-            titleBar.ButtonForegroundColor = Colors.White;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
