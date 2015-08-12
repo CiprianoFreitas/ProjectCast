@@ -38,7 +38,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Grid Height="120" VerticalAlignment="Bottom">
-                    <MediaElement x:Name="PodcastPlayer" AreTransportControlsEnabled="True">
+                    <MediaElement x:Name="PodcastPlayer" AreTransportControlsEnabled="True" 
+                                  AudioCategory="Communications">
                     </MediaElement>
                 </Grid>
             </Grid>
