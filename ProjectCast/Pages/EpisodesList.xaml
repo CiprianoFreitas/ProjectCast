@@ -39,8 +39,8 @@
                 </ListView>
                 <Grid Height="120" VerticalAlignment="Bottom">
                     <MediaElement x:Name="PodcastPlayer" AreTransportControlsEnabled="True" 
-                                  CurrentStateChanged="MusicPlayer_CurrentStateChanged"
-                                  AudioCategory="Communications"
+                                  CurrentStateChanged="PodcastPlayer_CurrentStateChanged"
+                                  AudioCategory="BackgroundCapableMedia"
                                   MediaOpened="PodcastPlayer_MediaOpened">
                     </MediaElement>
                 </Grid>

@@ -34,6 +34,8 @@ namespace ProjectCast
                 AppViewBackButtonVisibility.Visible :
                 AppViewBackButtonVisibility.Collapsed;
 
+            InitializeSystemMediaControls();
+
             IEnumerable<Episode> passedParameter = (IEnumerable<Episode>)e.Parameter;
             ItemListContainer.ItemsSource = passedParameter;
         }
@@ -42,12 +44,6 @@ namespace ProjectCast
         {
             this.InitializeComponent();
 
-            systemPlayerControls = SystemMediaTransportControls.GetForCurrentView();
-
-            systemPlayerControls.ButtonPressed += SystemControls_ButtonPressed;
-
-            systemPlayerControls.IsPlayEnabled = true;
-            systemPlayerControls.IsPauseEnabled = true;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -81,6 +77,17 @@ namespace ProjectCast
             PodcastPlayer.Play();
         }
 
+        #region System Media Controls
+
+        private void InitializeSystemMediaControls()
+        {
+            systemPlayerControls = SystemMediaTransportControls.GetForCurrentView();
+
+            systemPlayerControls.ButtonPressed += SystemControls_ButtonPressed;
+
+            systemPlayerControls.IsPlayEnabled = true;
+            systemPlayerControls.IsPauseEnabled = true;
+        }
 
         void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
     SystemMediaTransportControlsButtonPressedEventArgs args)
@@ -114,7 +121,7 @@ namespace ProjectCast
             });
         }
 
-        void MusicPlayer_CurrentStateChanged(object sender, RoutedEventArgs e)
+        void PodcastPlayer_CurrentStateChanged(object sender, RoutedEventArgs e)
         {
             switch (PodcastPlayer.CurrentState)
             {
@@ -137,10 +144,10 @@ namespace ProjectCast
 
         private void PodcastPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
-            UpdateSongInfoManually();
+            UpdatePodcastInfoInControls();
         }
 
-        void UpdateSongInfoManually()
+        void UpdatePodcastInfoInControls()
         {
             // Get the updater.
             SystemMediaTransportControlsDisplayUpdater updater = systemPlayerControls.DisplayUpdater;
@@ -155,6 +162,7 @@ namespace ProjectCast
 
             // Update the system media transport controls.
             updater.Update();
-        }
+        } 
+        #endregion
     }
 }
